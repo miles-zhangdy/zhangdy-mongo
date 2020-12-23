@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.zhangdy.mongo</groupId>
-    <artifactId>zhangd-mongo</artifactId>
+    <artifactId>zhangdy-mongo</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <name>zhangd-mongo</name>
+    <name>zhangdy-mongo</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
