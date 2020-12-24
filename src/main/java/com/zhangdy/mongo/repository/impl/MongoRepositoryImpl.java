@@ -103,6 +103,7 @@ public  class MongoRepositoryImpl<T> implements MongoRepository<T> {
         Criteria criteria = new Criteria();
         try {
             for (Field declaredField : declaredFields) {
+                declaredField.setAccessible(Boolean.TRUE);
                 if(declaredField.get(object) != null){
                     criteria.and(declaredField.getName()).is(declaredField.get(object));
                 }
@@ -127,6 +128,7 @@ public  class MongoRepositoryImpl<T> implements MongoRepository<T> {
         Field[] declaredFields = object.getClass().getDeclaredFields();
         try {
             for (Field declaredField : declaredFields) {
+                declaredField.setAccessible(Boolean.TRUE);
                 Object filedValue = declaredField.get(object);
                 update.set(declaredField.getName(), filedValue);
             }
