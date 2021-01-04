@@ -1,6 +1,7 @@
 package com.zhangdy.mongo.config;
 
 
+import com.zhangdy.mongo.config.annotation.NonNeedFreshProxy;
 import com.zhangdy.mongo.config.mongo.MongoProxy;
 import com.zhangdy.mongo.repository.MongoRepository;
 import com.zhangdy.mongo.repository.impl.MongoRepositoryImpl;
@@ -28,6 +29,10 @@ public class MongoProxyProcessor implements BeanPostProcessor {
         for(Field field : fields){
             boolean isMongoRepository = field.getType().getSimpleName().equalsIgnoreCase(MONGO_REPOSITORY_SIMPLE_NAME);
             if (isMongoRepository) {
+                NonNeedFreshProxy annotation = field.getAnnotation(NonNeedFreshProxy.class);
+                if (annotation != null) {
+                    continue;
+                }
                 try {
                     field.setAccessible(Boolean.TRUE);
                     ResolvableType type = ResolvableType.forField(field).getGeneric(ZERO);
